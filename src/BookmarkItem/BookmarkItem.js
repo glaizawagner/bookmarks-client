@@ -47,6 +47,11 @@ export default function BookmarkItem(props) {
             {props.description}
           </p>
           <div className='BookmarkItem__buttons'>
+            <button className='BookmarkItem__description'
+
+            >
+              Edit
+            </button>
             <button
               className='BookmarkItem__description'
               onClick={() => {
