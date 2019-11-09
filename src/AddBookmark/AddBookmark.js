@@ -21,15 +21,16 @@ class AddBookmark extends Component {
     error: null,
   };
 
+
   handleSubmit = e => {
     e.preventDefault()
     // get the form fields from the event
     const { title, url, description, rating } = e.target
-    const bookmark = {
-      title: title.value,
-      url: url.value,
-      description: description.value,
-      rating: rating.value,
+    const bookmark = { 
+      title: title.value, 
+      url: url.value, 
+      description: description.value, 
+      rating : Number(rating.value)
     }
     this.setState({ error: null })
     fetch(config.API_ENDPOINT, {
@@ -37,7 +38,7 @@ class AddBookmark extends Component {
       body: JSON.stringify(bookmark),
       headers: {
         'content-type': 'application/json',
-        'authorization': `bearer ${config.API_KEY}`
+        'Authorization': `Bearer ${config.API_KEY}`
       }
     })
       .then(res => {
@@ -46,7 +47,7 @@ class AddBookmark extends Component {
         }
         return res.json()
       })
-      .then(data => {
+      .then( data => {
         title.value = ''
         url.value = ''
         description.value = ''
@@ -122,8 +123,8 @@ class AddBookmark extends Component {
             <input
               type='number'
               name='rating'
+              defaultValue ='1'
               id='rating'
-              defaultValue='1'
               min='1'
               max='5'
               required
